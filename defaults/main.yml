@@ -1,0 +1,9 @@
+---
+# defaults file for sa-docker-projectatomic
+
+role_dir: "{{role_path}}"
+
+option_buildah: true
+option_kompose: true
+option_skopeo: true
+option_atomic_cli: true
