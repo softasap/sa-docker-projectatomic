@@ -1,7 +1,19 @@
-sa-kong
-=======
+sa-docker-projectatomic
+=======================
 
 [![Build Status](https://travis-ci.org/softasap/sa-docker-projectatomic.svg?branch=master)](https://travis-ci.org/softasap/sa-docker-projectatomic)
+
+Tools from projectatomuc team help you create, deploy, manage, and secure containers.
+
+ Build containers with Buildah https://github.com/projectatomic/buildah
+
+ Compose applications with Kompose http://kompose.io/
+
+ Pull and move images with Skopeo https://github.com/projectatomic/skopeo
+
+ Manage container hosts with Cockpit  (not included, see sa-cockpit role)
+
+ Install, run and scan with Atomic CLI https://github.com/projectatomic/atomic
 
 
 
@@ -12,7 +24,7 @@ sa-kong
         option_buildah: true,
         option_kompose: true,
         option_skopeo: true,
-        option_atomic_cli: true
+        option_atomic_cli: true  # not supported for Ubuntu platform
       }
 ```
 
@@ -25,7 +37,7 @@ Advanced:
         option_buildah: true,
         option_kompose: true,
         option_skopeo: true,
-        option_atomic_cli: true,
+        option_atomic_cli: true, # not supported for Ubuntu platform
         kompose_version: "1.9.0"
       }
 ```

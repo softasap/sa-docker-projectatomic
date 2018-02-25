@@ -48,6 +48,7 @@
       apt: name="{{item}}" state="present" update_cache="yes"
       with_items:
         - "atomic"
+      ignore_errors: true  
       become: yes
       tags:
         - projectatomic
