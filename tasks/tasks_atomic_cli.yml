@@ -1,0 +1,56 @@
+  - block:
+
+    - name: Atomic | Install atomic-cli
+      dnf: name="{{item}}" state="present"
+      with_items:
+        - "atomic"
+      become: yes
+      tags:
+        - projectatomic
+
+    when: ansible_distribution == 'Fedora'
+
+  - block:
+
+    - name: Buildah | Install buildah
+      yum: name="{{item}}" state="present"
+      with_items:
+        - "atomic"
+      become: yes
+      tags:
+        - projectatomic
+
+    when: ansible_distribution == 'CentOS'
+
+  - block:
+
+    - name: ProjectAtomic | Add an apt key by id from a keyserver
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 018ba5ad9df57a4448f0e6cf8becf1637ad8c79d
+      become: yes
+      tags:
+        - projectatomic
+
+    - name: ProjectAtomic | Add apt repository
+      apt_repository: repo="deb http://ppa.launchpad.net/projectatomic/ppa/ubuntu  {{ansible_distribution_release}} main"
+      become: yes
+      tags:
+        - projectatomic
+
+    - name: ProjectAtomic | Add apt src repository
+      apt_repository: repo="deb-src http://ppa.launchpad.net/projectatomic/ppa/ubuntu  {{ansible_distribution_release}} main"
+      become: yes
+      tags:
+        - projectatomic
+
+    - name: ProjectAtomic | Install Atomic
+      apt: name="{{item}}" state="present" update_cache="yes"
+      with_items:
+        - "atomic"
+      ignore_errors: true  
+      become: yes
+      tags:
+        - projectatomic
+
+    when: ansible_os_family == "Debian"

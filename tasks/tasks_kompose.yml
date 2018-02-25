@@ -1,0 +1,20 @@
+---
+
+
+  - name: Kompose | Check if is present
+    command: test -x /usr/local/bin/kompose
+    ignore_errors: yes
+    register: kompose_present
+    tags:
+      - projectatomic
+
+  - name: Kompose | install
+    get_url:
+      url: "https://github.com/kubernetes/kompose/releases/download/v{{kompose_version | default('1.9.0')}}/kompose-linux-amd64"
+      dest: /usr/local/bin/kompose
+      mode: "u=rwx,g=rx,o=rx"
+    become: yes
+    when: kompose_present | failed
+    become: yes
+    tags:
+      - projectatomic

@@ -1,0 +1,3 @@
+[submodule "roles/sa-docker-projectatomic"]
+        path = roles/sa-docker-projectatomic
+        url = https://github.com/softasap/sa-docker-projectatomic.git

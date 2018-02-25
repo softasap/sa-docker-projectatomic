@@ -1,0 +1,14 @@
+---
+# tasks file for sa-docker-projectatomic
+
+  - include_tasks: tasks_buildah.yml
+    when: option_buildah
+
+  - include_tasks: tasks_kompose.yml
+    when: option_kompose
+
+  - include_tasks: tasks_skopeo.yml
+    when: option_skopeo
+
+  - include_tasks: tasks_atomic_cli.yml
+    when: option_atomic_cli
